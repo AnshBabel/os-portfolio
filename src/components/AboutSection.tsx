@@ -20,8 +20,8 @@ export default function AboutSection() {
             <div className="os-half-ring" />
             <div className="w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden border-2 border-white/10 relative z-10 p-1 bg-[#0a0a0c]">
               <img 
-                src="https://github.com/AnshBabel.png" 
-                alt="Ansh Babel"
+                src="image.png" 
+                
                 className="w-full h-full rounded-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0"
               />
             </div>
@@ -35,7 +35,7 @@ export default function AboutSection() {
             </div>
             <div className="flex justify-between py-2 border-b border-white/5">
               <span className="text-os-text-muted uppercase">Role</span>
-              <span className="text-os-cyan font-bold uppercase">Full_Stack_Developer</span>
+              <span className="text-os-cyan font-bold uppercase amber">Full_Stack_Developer</span>
             </div>
             <div className="flex justify-between py-2 border-b border-white/5">
               <span className="text-os-text-muted uppercase">Location</span>
@@ -78,8 +78,8 @@ export default function AboutSection() {
 
           {/* DITTO Stats Grid */}
           <div className="grid grid-cols-3 gap-4">
-            <StatCard icon={<Terminal className="w-5 h-5" />} label="EXPERIENCE" value="1+ YRS" />
-            <StatCard icon={<Code className="w-5 h-5" />} label="PROJECTS" value="20+ DEP" />
+            <StatCard icon={<Terminal className="w-5 h-5" />} label="Engineering Hours" value="500+ HRS" />
+            <StatCard icon={<Code className="w-5 h-5" />} label="PROJECTS" value="10+ DEP" />
             <StatCard icon={<Coffee className="w-5 h-5" />} label="CAFFEINE" value="∞ mL" />
           </div>
         </div>

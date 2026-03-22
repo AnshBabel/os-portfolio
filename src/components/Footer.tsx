@@ -5,7 +5,7 @@ export default function Footer() {
         <span className="text-cyan">{'</>'}</span> Ansh Babel | Software Engineer
       </div>
       <div className="text-xs text-os-text-muted mb-1">
-        Built with {'<3'} using React, TypeScript & Tailwind
+        Built with using React, TypeScript & Tailwind
       </div>
       <div className="text-xs text-os-text-muted">
         © {new Date().getFullYear()} Ansh Babel. All rights reserved.
