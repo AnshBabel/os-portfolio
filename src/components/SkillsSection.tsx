@@ -1,77 +1,110 @@
-import { motion } from 'framer-motion';
-import SectionHeader from './SectionHeader';
+import React, { useEffect } from 'react';
+import { Cpu } from 'lucide-react';
 
 const skills = [
-  { name: 'React', color: '#61dafb' },
-  { name: 'Next.js', color: '#ffffff' },
-  { name: 'TypeScript', color: '#3178c6' },
-  { name: 'Node.js', color: '#68a063' },
-  { name: 'Java', color: '#ed8b00' },
-  { name: 'Spring Boot', color: '#6db33f' },
-  { name: 'Python', color: '#3776ab' },
-  { name: 'Go', color: '#00add8' },
-  { name: 'Rust', color: '#dea584' },
-  { name: 'C++', color: '#00599c' },
-  { name: 'Kotlin', color: '#7f52ff' },
-  { name: 'Tailwind', color: '#06b6d4' },
-  { name: 'Three.js', color: '#ffffff' },
-  { name: 'K8s', color: '#326ce5' },
-  { name: 'Docker', color: '#2496ed' },
-  { name: 'AWS', color: '#ff9900' },
-  { name: 'Linux', color: '#fcc624' },
-  { name: 'Firebase', color: '#ffca28' },
-  { name: 'GraphQL', color: '#e535ab' },
-  { name: 'MySQL', color: '#4479a1' },
-  { name: 'MongoDB', color: '#47a248' },
-  { name: 'Redis', color: '#dc382d' },
-  { name: 'Terraform', color: '#7b42bc' },
-  { name: 'Azure', color: '#0078d4' },
-  { name: 'Bash', color: '#4eaa25' },
+  { name: 'HTML5', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg' },
+  { name: 'CSS3', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg' },
+  { name: 'JavaScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg' },
+  { name: 'React', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' },
+  { name: 'Next.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg' },
+  { name: 'TypeScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg' },
+  { name: 'Node.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg' },
+  { name: 'Java', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg' },
+  { name: 'Python', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg' },
+  { name: 'Docker', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg' },
+  { name: 'Git', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg' },
+  { name: 'MySQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg' },
+  { name: 'MongoDB', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg' },
+  { name: 'Tailwind', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg' },
+  { name: 'Redis', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg' },
 ];
 
 export default function SkillsSection() {
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://www.goat1000.com/tagcanvas.min.js';
+    script.async = true;
+    script.onload = () => {
+      try {
+        // @ts-ignore
+        window.TagCanvas.Start('skills-canvas', 'skills-list', {
+          textColour: null,
+          outlineColour: 'transparent',
+          reverse: true,
+          depth: 1,
+          maxSpeed: 0.05,
+          minSpeed: 0.02, // Constant rotation
+          wheelZoom: false,
+          imageScale: 1.4,
+          fadeIn: 800,
+          clickToFront: 600,
+          imageMode: 'both',
+          imagePosition: 'top',
+          noSelect: true,
+        });
+      } catch (e) { console.error(e); }
+    };
+    document.body.appendChild(script);
+    return () => { if (document.body.contains(script)) document.body.removeChild(script); };
+  }, []);
+
   return (
-    <section className="py-24 px-4 md:px-8 lg:px-16 max-w-7xl mx-auto" id="skills">
-      <SectionHeader icon="⚙" title="# Skills.json" />
-
-      <div className="relative">
-        {/* Globe wireframe decoration */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-20">
-          <div className="w-[500px] h-[500px] rounded-full border border-os-amber/30" />
-          <div className="absolute w-[400px] h-[400px] rounded-full border border-os-amber/20 rotate-45" />
-          <div className="absolute w-[350px] h-[350px] rounded-full border border-os-amber/15 -rotate-12" />
+    <section id="skills" className="py-24 relative overflow-hidden flex flex-col items-center">
+      {/* Header */}
+      <div className="max-w-7xl w-full mx-auto px-4 md:px-8 lg:px-16 mb-8">
+        <div className="flex items-center gap-3 text-2xl font-mono font-bold">
+          <span className="text-cyan-400"><Cpu className="w-6 h-6" /></span>
+          <h2 className="text-white tracking-widest text-3xl uppercase"># Skills.json</h2>
         </div>
+      </div>
 
-        <motion.div
-          className="flex flex-wrap justify-center gap-4 relative z-10 max-w-4xl mx-auto"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={{
-            visible: { transition: { staggerChildren: 0.04 } },
-          }}
+      <div className="relative w-full max-w-[650px] aspect-square flex items-center justify-center">
+        
+        {/* THE GEODESIC WIREFRAME MESH */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+          <div className="absolute inset-0 bg-gradient-to-tr from-amber-500/10 via-transparent to-cyan-500/10 rounded-full blur-3xl opacity-50" />
+          
+          <svg viewBox="0 0 100 100" className="w-[115%] h-[115%] opacity-20 animate-[spin_60s_linear_infinite]">
+            <defs>
+              <linearGradient id="meshGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#f59e0b" stopOpacity="0.5" />
+                <stop offset="100%" stopColor="#00ffff" stopOpacity="0.5" />
+              </linearGradient>
+            </defs>
+            {/* The Ditto Wireframe Pattern */}
+            <circle cx="50" cy="50" r="48" fill="none" stroke="url(#meshGrad)" strokeWidth="0.1" />
+            <path d="M50 2 L50 98 M2 50 L98 50 M15 15 L85 85 M85 15 L15 85" stroke="url(#meshGrad)" strokeWidth="0.08" />
+            <path d="M50 2 L85 15 L98 50 L85 85 L50 98 L15 85 L2 50 L15 15 Z" fill="none" stroke="url(#meshGrad)" strokeWidth="0.1" />
+            <path d="M50 2 L15 15 M50 2 L85 15 M98 50 L85 15 M98 50 L85 85 M50 98 L85 85 M50 98 L15 85 M2 50 L15 85 M2 50 L15 15" stroke="url(#meshGrad)" strokeWidth="0.08" />
+            <circle cx="50" cy="50" r="30" fill="none" stroke="url(#meshGrad)" strokeWidth="0.08" strokeDasharray="1,1" />
+          </svg>
+        </div>
+        
+        <canvas
+          id="skills-canvas"
+          width="900"
+          height="900"
+          className="w-full h-full cursor-grab active:cursor-grabbing z-10 relative"
         >
-          {skills.map((skill) => (
-            <motion.div
-              key={skill.name}
-              className="os-window px-4 py-3 flex items-center gap-2 cursor-grab active:cursor-grabbing select-none"
-              variants={{
-                hidden: { opacity: 0, scale: 0.8, y: 20 },
-                visible: { opacity: 1, scale: 1, y: 0 },
-              }}
-              transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-              whileHover={{ scale: 1.08, boxShadow: `0 0 20px ${skill.color}33` }}
-              whileTap={{ scale: 0.95 }}
-              drag
-              dragConstraints={{ top: -50, bottom: 50, left: -50, right: 50 }}
-              dragElastic={0.3}
-              dragMomentum
-            >
-              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: skill.color }} />
-              <span className="font-mono text-sm text-foreground">{skill.name}</span>
-            </motion.div>
-          ))}
-        </motion.div>
+          <ul id="skills-list" className="hidden">
+            {skills.map((skill) => (
+              <li key={skill.name}>
+                <a href="#" onClick={(e) => e.preventDefault()}>
+                  <img width="50" height="50" src={skill.icon} alt={skill.name} />
+                  <span className="text-white font-mono text-[9px] uppercase">{skill.name}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </canvas>
+
+        {/* Drag Instruction */}
+        <div className="absolute bottom-[-40px] z-20 flex items-center gap-3 px-6 py-2 bg-[#0c0c0e]/90 border border-white/10 rounded-full backdrop-blur-md">
+           <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_8px_rgba(0,255,255,1)]" />
+           <span className="text-[9px] font-mono text-zinc-400 uppercase tracking-[0.4em]">
+             Drag to explore skills universe
+           </span>
+        </div>
       </div>
     </section>
   );

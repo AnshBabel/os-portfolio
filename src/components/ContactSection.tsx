@@ -14,7 +14,7 @@ export default function ContactSection() {
     setStatus('sending');
     setTimeout(() => {
       setStatus('sent');
-      window.open(`mailto:momina7863@gmail.com?subject=Portfolio Contact from ${name}&body=${encodeURIComponent(message)}%0A%0AFrom: ${email}`);
+      window.open(`mailto:ansh.ababel@gmail.com?subject=Portfolio Contact from ${name}&body=${encodeURIComponent(message)}%0A%0AFrom: ${email}`);
       setTimeout(() => setStatus('idle'), 3000);
     }, 1500);
   };
@@ -30,15 +30,15 @@ export default function ContactSection() {
             <span className="text-foreground">{'{'}</span>
             <div className="pl-4">
               <JsonLine k="status" v='"open_to_work"' vColor="text-os-green" />
-              <JsonLine k="email" v='"momina7863@gmail.com"' vColor="text-cyan" link="mailto:momina7863@gmail.com" />
+              <JsonLine k="email" v='"ansh.ababel@gmail.com"' vColor="text-cyan" link="mailto:ansh.ababel@gmail.com" />
               <span className="text-[#9cdcfe]">"socials"</span>: {'{'}
               <div className="pl-4">
-                <JsonLine k="github" v='"@Momin-786"' vColor="text-[#ce9178]" />
-                <JsonLine k="linkedin" v='"@abdul-momin7863"' vColor="text-[#ce9178]" />
-                <JsonLine k="twitter" v='"@@abdulmomin7863"' vColor="text-[#ce9178]" />
+                <JsonLine k="github" v='"@AnshBabel"' vColor="text-[#ce9178]" />
+                <JsonLine k="linkedin" v='"@anshbabel"' vColor="text-[#ce9178]" />
+               
               </div>
               {'},'}
-              <JsonLine k="location" v='"Gujranwala, Pakistan"' vColor="text-os-green" />
+              <JsonLine k="location" v='"Indore, India"' vColor="text-os-green" />
             </div>
             <span className="text-foreground">{'}'}</span>
             <div className="mt-4 text-os-text-muted">{'// Waiting for connection ...'}</div>

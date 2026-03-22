@@ -1,126 +1,102 @@
-import { useState, useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import SectionHeader from './SectionHeader';
-import OSWindow from './OSWindow';
-
-function useTypewriter(text: string, speed = 20, trigger = true) {
-  const [displayed, setDisplayed] = useState('');
-  useEffect(() => {
-    if (!trigger) return;
-    setDisplayed('');
-    let i = 0;
-    const interval = setInterval(() => {
-      i++;
-      setDisplayed(text.slice(0, i));
-      if (i >= text.length) clearInterval(interval);
-    }, speed);
-    return () => clearInterval(interval);
-  }, [text, speed, trigger]);
-  return displayed;
-}
-
-const stats = [
-  { icon: '⚙', label: 'EXPERIENCE', value: '4+', unit: 'YRS' },
-  { icon: '</>', label: 'PROJECTS', value: '50+', unit: 'DEP' },
-  { icon: '☕', label: 'CAFFEINE', value: '∞', unit: 'ml' },
-];
+import { Terminal, Code, Coffee } from 'lucide-react';
 
 export default function AboutSection() {
-  const [inView, setInView] = useState(false);
-  const whoami = useTypewriter(
-    'Passionate full-stack developer with expertise in modern web technologies. I specialize in creating robust, scalable applications that solve real-world problems.',
-    15,
-    inView
-  );
-  const mission = useTypewriter(
-    'Translating complex business requirements into robust technical solutions. Currently focused on Microservices, Real-time Systems, and AI Integration.',
-    15,
-    inView
-  );
-
   return (
-    <section className="py-24 px-4 md:px-8 lg:px-16 max-w-7xl mx-auto" id="about">
-      <SectionHeader icon=">_" title="# About.system" />
+    <section id="about" className="py-24 px-4 md:px-8 lg:px-16 relative">
+      <div className="max-w-7xl mx-auto mb-16">
+        <div className="flex items-center gap-3 text-2xl font-mono font-bold">
+          <span className="text-os-amber">&gt;_</span>
+          <h2 className="text-white tracking-widest text-3xl uppercase"># About.system</h2>
+        </div>
+      </div>
 
-      <motion.div
-        className="grid grid-cols-1 lg:grid-cols-2 gap-8"
-        onViewportEnter={() => setInView(true)}
-        viewport={{ once: true, amount: 0.3 }}
-      >
-        {/* Profile Card */}
-        <OSWindow id="about-profile" title="user_profile.card">
-          <div className="p-8 flex flex-col items-center">
-            <div className="relative mb-8">
-              <div className="w-40 h-40 rounded-full bg-os-surface border-2 border-os-amber overflow-hidden flex items-center justify-center">
-                <span className="text-5xl font-bold text-os-amber font-mono">AM</span>
-              </div>
-              <div className="absolute bottom-2 right-2 w-4 h-4 rounded-full bg-os-green border-2 border-background" />
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        {/* LEFT: Profile Card (Takes 5 columns) */}
+        <div className="lg:col-span-5 os-glass-card p-10 flex flex-col items-center group">
+          <div className="relative mb-12">
+            <div className="os-half-ring" />
+            <div className="w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden border-2 border-white/10 relative z-10 p-1 bg-[#0a0a0c]">
+              <img 
+                src="https://github.com/AnshBabel.png" 
+                alt="Ansh Babel"
+                className="w-full h-full rounded-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0"
+              />
             </div>
-            <div className="w-full space-y-3 font-mono text-sm">
-              <Row label="OPERATOR" value="ABDUL MOMIN" accent />
-              <Row label="ROLE" value="FULL_STACK_SOFTWARE_ENGINEER" accent />
-              <Row label="LOCATION" value="Gujranwala, Pakistan" />
-              <div className="flex justify-between items-center">
-                <span className="text-os-text-muted">STATUS</span>
-                <span className="px-2 py-0.5 text-xs border border-os-green text-os-green rounded">OPEN</span>
-              </div>
-            </div>
+            <div className="absolute bottom-4 right-4 w-5 h-5 bg-emerald-500 rounded-full border-4 border-[#0c0c0e] z-20" />
           </div>
-        </OSWindow>
 
-        {/* Terminal + Stats */}
-        <div className="space-y-6">
-          <OSWindow id="about-terminal" title="user_profile.log">
-            <div className="p-6 font-mono text-sm space-y-4">
-              <div>
-                <span className="text-os-amber">→ </span>
-                <span className="text-os-green font-bold">whoami</span>
-              </div>
-              <blockquote className="border-l-2 border-os-border pl-4 text-os-text-muted leading-relaxed min-h-[60px]">
-                {whoami}<span className="inline-block w-1.5 h-4 bg-os-cyan animate-blink ml-0.5 align-middle" />
-              </blockquote>
-              <div>
-                <span className="text-os-amber">→ </span>
-                <span className="text-os-green font-bold">cat mission.txt</span>
-              </div>
-              <blockquote className="border-l-2 border-os-border pl-4 text-os-text-muted leading-relaxed min-h-[60px]">
-                {mission}<span className="inline-block w-1.5 h-4 bg-os-cyan animate-blink ml-0.5 align-middle" />
-              </blockquote>
+          <div className="w-full space-y-4 font-mono text-xs tracking-[0.2em]">
+            <div className="flex justify-between py-2 border-b border-white/5">
+              <span className="text-os-text-muted uppercase">Operator</span>
+              <span className="text-os-amber font-bold">ANSH BABEL</span>
             </div>
-          </OSWindow>
-
-          <div className="grid grid-cols-3 gap-4">
-            {stats.map((s, i) => (
-              <motion.div
-                key={s.label}
-                className="os-window p-4"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1, type: 'spring', stiffness: 300, damping: 30 }}
-              >
-                <div className="flex items-center gap-1.5 text-os-amber text-xs font-mono mb-2">
-                  <span>{s.icon}</span>
-                  <span>{s.label}</span>
-                </div>
-                <div className="flex items-baseline gap-2">
-                  <span className="text-2xl font-bold text-foreground">{s.value}</span>
-                  <span className="text-xs text-os-text-muted font-mono">{s.unit}</span>
-                </div>
-              </motion.div>
-            ))}
+            <div className="flex justify-between py-2 border-b border-white/5">
+              <span className="text-os-text-muted uppercase">Role</span>
+              <span className="text-os-cyan font-bold uppercase">Full_Stack_Developer</span>
+            </div>
+            <div className="flex justify-between py-2 border-b border-white/5">
+              <span className="text-os-text-muted uppercase">Location</span>
+              <span className="text-white">Indore, India</span>
+            </div>
+            <div className="flex justify-between py-2">
+              <span className="text-os-text-muted uppercase">Status</span>
+              <span className="px-2 border border-emerald-500 text-emerald-500 rounded text-[10px]">OPEN</span>
+            </div>
           </div>
         </div>
-      </motion.div>
+
+        {/* RIGHT: Log & Stats (Takes 7 columns) */}
+        <div className="lg:col-span-7 flex flex-col gap-8">
+          
+          {/* Terminal Log Box */}
+          <div className="os-glass-card overflow-hidden">
+            <div className="bg-white/5 px-6 py-3 border-b border-white/5 flex items-center justify-between">
+              <span className="font-mono text-[11px] text-os-text-muted tracking-widest uppercase">user_profile.log</span>
+              <div className="flex gap-2">
+                <div className="w-2 h-2 rounded-full bg-white/10" />
+                <div className="w-2 h-2 rounded-full bg-white/10" />
+              </div>
+            </div>
+            <div className="p-8 font-mono space-y-8">
+              <div className="group">
+                <div className="text-os-cyan text-xs mb-3 transition-transform group-hover:translate-x-1">→ whoami</div>
+                <p className="text-os-text-muted text-[13px] leading-relaxed pl-5 border-l border-white/5">
+                  Passionate B.Tech Computer Science student with expertise in modern web technologies. I specialize in creating robust, scalable applications.
+                </p>
+              </div>
+              <div className="group">
+                <div className="text-os-cyan text-xs mb-3 transition-transform group-hover:translate-x-1">→ cat mission.txt</div>
+                <p className="text-os-text-muted text-[13px] leading-relaxed pl-5 border-l border-white/5">
+                  Translating complex business requirements into robust technical solutions. Currently focused on <span className="text-white">Full-Stack Development</span> and <span className="text-white">UI/UX</span>.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* DITTO Stats Grid */}
+          <div className="grid grid-cols-3 gap-4">
+            <StatCard icon={<Terminal className="w-5 h-5" />} label="EXPERIENCE" value="1+ YRS" />
+            <StatCard icon={<Code className="w-5 h-5" />} label="PROJECTS" value="20+ DEP" />
+            <StatCard icon={<Coffee className="w-5 h-5" />} label="CAFFEINE" value="∞ mL" />
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
 
-function Row({ label, value, accent = false }: { label: string; value: string; accent?: boolean }) {
+function StatCard({ icon, label, value }: { icon: any, label: string, value: string }) {
   return (
-    <div className="flex justify-between items-center">
-      <span className="text-os-text-muted">{label}</span>
-      <span className={accent ? 'text-os-amber font-bold tracking-wider' : 'text-foreground'}>{value}</span>
-    </div>
+    <motion.div 
+      whileHover={{ y: -5 }}
+      className="os-glass-card p-6 flex flex-col items-center justify-center text-center group cursor-default"
+    >
+      <div className="text-os-text-muted group-hover:text-white transition-colors mb-3">{icon}</div>
+      <span className="text-[9px] text-os-text-muted uppercase tracking-widest mb-1">{label}</span>
+      <span className="text-sm font-bold text-white tracking-widest">{value}</span>
+    </motion.div>
   );
 }

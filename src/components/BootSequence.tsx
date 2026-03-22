@@ -8,14 +8,14 @@ const bootLines = [
   { text: '> typescript.engine ....... OK', delay: 650 },
   { text: '> tailwind.styles ........ OK', delay: 800 },
   { text: 'MOUNTING FILESYSTEM...', delay: 1000 },
-  { text: '> /home/abdul/portfolio', delay: 1150 },
+  { text: '> /home/ansh/portfolio', delay: 1150 },
   { text: '> /usr/lib/framer-motion', delay: 1300 },
   { text: 'INITIALIZING DISPLAY SERVER...', delay: 1500 },
   { text: 'ALL SYSTEMS NOMINAL', delay: 1800 },
   { text: '', delay: 2000 },
   { text: '████████████████████████ 100%', delay: 2100 },
   { text: '', delay: 2200 },
-  { text: 'SUCCESS. Welcome, Abdul.', delay: 2300 },
+  { text: 'SUCCESS. Welcome, Ansh.', delay: 2300 },
 ];
 
 export default function BootSequence({ onComplete }: { onComplete: () => void }) {

@@ -14,13 +14,18 @@ export default function Index() {
   const handleBootComplete = useCallback(() => setBooted(true), []);
 
   return (
-    <div className="min-h-screen bg-background os-dot-grid relative">
+    <div className="os-main-layout">
       {!booted && <BootSequence onComplete={handleBootComplete} />}
+      
       {booted && (
         <>
-          <div className="fixed inset-0 os-scanline z-0" />
+          {/* Background Layers */}
+          <div className="os-dot-grid" />
+          <div className="os-scanline" />
+          
           <FloatingNav />
-          <div className="relative z-10">
+          
+          <main className="relative z-10">
             <HeroSection />
             <AboutSection />
             <SkillsSection />
@@ -28,7 +33,7 @@ export default function Index() {
             <ExperienceSection />
             <ContactSection />
             <Footer />
-          </div>
+          </main>
         </>
       )}
     </div>

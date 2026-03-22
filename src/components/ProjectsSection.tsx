@@ -31,7 +31,7 @@ export default function ProjectsSection() {
   const [allRepos, setAllRepos] = useState<Repo[]>([]);
 
   useEffect(() => {
-    fetch('https://api.github.com/users/Momin-786/repos?per_page=100&sort=updated')
+    fetch('https://api.github.com/users/AnshBabel/repos?per_page=100&sort=updated')
       .then((r) => r.json())
       .then((data: Repo[]) => {
         if (Array.isArray(data)) {
@@ -134,7 +134,7 @@ export default function ProjectsSection() {
             ))}
           </div>
           <a
-            href="https://github.com/Momin-786?tab=repositories"
+            href="https://github.com/AnshBabel?tab=repositories"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-2 mt-6 text-sm text-os-text-muted hover:text-foreground transition-colors font-mono"
