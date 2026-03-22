@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 95%;
+    --card: 240 6% 10%;
+    --card-foreground: 0 0% 95%;
+    --popover: 240 6% 10%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 187 94% 43%;
+    --primary-foreground: 240 10% 3.9%;
+    --secondary: 38 92% 50%;
+    --secondary-foreground: 240 10% 3.9%;
+    --muted: 240 4% 16%;
+    --muted-foreground: 240 5% 65%;
+    --accent: 187 94% 43%;
+    --accent-foreground: 240 10% 3.9%;
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 0 0% 95%;
+    --border: 240 4% 16%;
+    --input: 240 4% 16%;
+    --ring: 187 94% 43%;
+    --radius: 0.5rem;
+
+    --os-bg: 240 10% 3.9%;
+    --os-surface: 240 6% 10%;
+    --os-surface-hover: 240 5% 14%;
+    --os-border: 240 4% 16%;
+    --os-cyan: 187 94% 43%;
+    --os-amber: 38 92% 50%;
+    --os-green: 142 71% 45%;
+    --os-red: 0 72% 51%;
+    --os-text: 0 0% 95%;
+    --os-text-muted: 240 5% 55%;
+    --os-glass: 240 6% 10%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Geist', system-ui, -apple-system, sans-serif;
+  }
+}
+
+@layer components {
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .os-window {
+    @apply rounded-lg border border-border backdrop-blur-xl;
+    background: hsla(var(--os-glass), 0.8);
+  }
+  .os-glow-cyan {
+    box-shadow: 0 0 20px hsla(var(--os-cyan), 0.15), 0 0 60px hsla(var(--os-cyan), 0.05);
+  }
+  .os-glow-amber {
+    box-shadow: 0 0 20px hsla(var(--os-amber), 0.15), 0 0 60px hsla(var(--os-amber), 0.05);
+  }
+  .os-dot-grid {
+    background-image: radial-gradient(circle, hsla(var(--os-text-muted), 0.15) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  .os-scanline {
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      hsla(var(--os-cyan), 0.03) 2px,
+      hsla(var(--os-cyan), 0.03) 4px
+    );
+    pointer-events: none;
+  }
+  .os-tag {
+    @apply inline-flex items-center gap-1.5 rounded border border-border px-2.5 py-1 text-xs font-mono;
+    color: hsl(var(--os-text-muted));
+  }
+  .os-tag-active {
+    @apply os-tag;
+    color: hsl(var(--os-cyan));
+    border-color: hsl(var(--os-cyan));
+    box-shadow: 0 0 8px hsla(var(--os-cyan), 0.2);
+  }
+  .text-cyan {
+    color: hsl(var(--os-cyan));
+  }
+  .text-amber {
+    color: hsl(var(--os-amber));
+  }
+  .text-os-green {
+    color: hsl(var(--os-green));
+  }
+  .text-os-red {
+    color: hsl(var(--os-red));
+  }
+  .text-os-muted {
+    color: hsl(var(--os-text-muted));
+  }
+  .border-os {
+    border-color: hsl(var(--os-border));
+  }
+  .bg-os-surface {
+    background: hsl(var(--os-surface));
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: hsl(var(--os-bg));
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--os-border));
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--os-text-muted));
+}
+
+/* Selection */
+::selection {
+  background: hsla(var(--os-cyan), 0.3);
+  color: hsl(var(--os-text));
+}
