@@ -1,11 +1,37 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Github, FileUser, Linkedin } from 'lucide-react';
 import OSWindow from './OSWindow';
 
 const techBadges = ['REACT', 'NEXT.JS', 'NODE.JS', 'TYPESCRIPT', 'JAVA', 'SPRING'];
 
+// Typewriter Component to handle character-by-character printing
+const TypewriterText = React.memo(({ text, onComplete }: { text: string; onComplete?: () => void }) => {
+  const [displayed, setDisplayed] = useState("");
+  
+  useEffect(() => {
+    let i = 0;
+    const interval = setInterval(() => {
+      setDisplayed(text.slice(0, i + 1));
+      i++;
+      if (i >= text.length) {
+        clearInterval(interval);
+        if (onComplete) {
+          const timeout = setTimeout(onComplete, 100); // Small delay before moving to next line
+          return () => clearTimeout(timeout);
+        }
+      }
+    }, 30); // Speed of typing
+    return () => clearInterval(interval);
+  }, [text, onComplete]);
+
+  return <span className="drop-shadow-[0_0_2px_rgba(255,255,255,0.3)]">{displayed}</span>;
+});
+
 export default function HeroSection() {
+  // Task 1: Initialize state to track current line being typed
+  const [lineIndex, setLineIndex] = useState(0);
+
   const scrollToProjects = () => {
     const element = document.getElementById('projects');
     if (element) {
@@ -18,7 +44,7 @@ export default function HeroSection() {
   };
 
   const lines = [
-    { content: '// Welcome to Ansh-OS v2.5.0', type: 'comment', extra: '' },
+    { content: '// Welcome to Ansh-OS v2.6.0', type: 'comment', extra: '' },
     { content: "import ", type: 'keyword', extra: "{ Developer } from './universe';" },
     { content: ' ', type: 'default', extra: '' },
     { content: 'const ', type: 'keyword', extra: "Portfolio = () => {" },
@@ -62,6 +88,7 @@ export default function HeroSection() {
             </span>
           </div>
           
+          {/* Social Buttons */}
           <div className="flex flex-col sm:flex-row flex-wrap gap-4 mt-8">
             <a 
               href="https://www.linkedin.com/in/anshbabel" 
@@ -113,31 +140,34 @@ export default function HeroSection() {
           </div>
         </motion.div>
 
+        {/* Right Side: Terminal Window with Task 1 Update */}
         <div className="hidden lg:block">
           <OSWindow id="hero-code" title="portfolio.tsx">
-            {/* INSTANT RENDER CONTAINER: No typewriter delay used here */}
-            <motion.div 
-              initial={{ opacity: 0 }} 
-              animate={{ opacity: 1 }} 
-              transition={{ duration: 0.5 }}
-              className="p-6 font-mono text-[13px] leading-7 min-h-[380px] bg-[#0c0c0e]/50"
-            >
+            <div className="p-6 font-mono text-[13px] leading-7 min-h-[380px] bg-[#0c0c0e]/50">
               {lines.map((line, idx) => (
-                <div key={idx} className="flex">
+                <div key={idx} className="flex min-h-[28px]">
+                  {/* Line numbers stay visible from start */}
                   <span className="w-8 text-right mr-4 text-zinc-700 select-none text-xs">{idx + 1}</span>
                   <div className="flex-1 whitespace-pre">
-                    <span className={
-                      line.type === 'comment' ? 'text-zinc-500 italic' :
-                      line.type === 'keyword' ? 'text-os-cyan' :
-                      line.type === 'tag' ? 'text-os-amber' : 'text-zinc-300'
-                    }>
-                      {line.content}
-                      <span className="text-zinc-300">{line.extra}</span>
-                    </span>
+                    {/* Condition to only show content line-by-line */}
+                    {lineIndex >= idx && (
+                      <span className={
+                        line.type === 'comment' ? 'text-zinc-500 italic' :
+                        line.type === 'keyword' ? 'text-os-cyan' :
+                        line.type === 'tag' ? 'text-os-amber' : 'text-zinc-300'
+                      }>
+                        {lineIndex === idx ? (
+                          <TypewriterText text={line.content} onComplete={() => setLineIndex(idx + 1)} />
+                        ) : (
+                          <span>{line.content}</span>
+                        )}
+                        <span className="text-zinc-300">{line.extra}</span>
+                      </span>
+                    )}
                   </div>
                 </div>
               ))}
-            </motion.div>
+            </div>
             <div className="px-6 pb-6 flex gap-4">
               <button className="os-tag-active flex items-center gap-2 px-5 py-2 hover:brightness-125 transition-all text-xs font-bold uppercase tracking-widest">
                 <span className="text-os-green">▶</span> Run Profile
