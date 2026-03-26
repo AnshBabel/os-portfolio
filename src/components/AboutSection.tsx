@@ -43,7 +43,7 @@ export default function AboutSection() {
             </div>
             <div className="flex justify-between py-2">
               <span className="text-os-text-muted uppercase">Status</span>
-              <span className="px-2 border border-emerald-500 text-emerald-500 rounded text-[10px]">OPEN</span>
+              <span className="px-2 border border-emerald-500 text-emerald-500 rounded text-[10px]">open-to-work</span>
             </div>
           </div>
         </div>
