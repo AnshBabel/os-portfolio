@@ -119,7 +119,7 @@ export default function HeroSection() {
             </a>
 
             <a 
-              href="https://drive.google.com/file/d/1qLVWCQ_o22cjaXmiUfxdhQZhk74pPCW7/view?usp=drive_link" 
+              href="https://drive.google.com/file/d/1qLVWCQ_o22cjaXmiUfxdhQZhk74pPCW7/view?usp=sharing" 
               target="_blank" 
               style={abdulButtonStyle} 
               className="bg-white/10 border border-white/20 px-8 py-4 flex items-center gap-3 hover:bg-os-cyan/20 transition-all group"
