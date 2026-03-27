@@ -3,12 +3,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Layout, Settings, Terminal, Database, Search, Folder, ExternalLink, Cpu } from 'lucide-react';
 
 const rawSkills = [
-  // Categories (Folders to appear in the circle)
-  { name: 'frontend_ui', icon: 'https://img.icons8.com/color/96/folder-invoices.png', cat: 'folder', url: '#', color: 'rgba(34, 211, 238, 0.1)' },
-  { name: 'backend_services', icon: 'https://img.icons8.com/color/96/folder-invoices.png', cat: 'folder', url: '#', color: 'rgba(34, 211, 238, 0.1)' },
-  { name: 'database_schemas', icon: 'https://img.icons8.com/color/96/folder-invoices.png', cat: 'folder', url: '#', color: 'rgba(34, 211, 238, 0.1)' },
-  { name: 'system_langs', icon: 'https://img.icons8.com/color/96/folder-invoices.png', cat: 'folder', url: '#', color: 'rgba(34, 211, 238, 0.1)' },
-  { name: 'devops_tools', icon: 'https://img.icons8.com/color/96/folder-invoices.png', cat: 'folder', url: '#', color: 'rgba(34, 211, 238, 0.1)' },
+//   // Categories (Folders to appear in the circle)
+//   { name: 'frontend_ui', icon: 'https://img.icons8.com/color/96/folder-invoices.png', cat: 'folder', url: '#', color: 'rgba(34, 211, 238, 0.1)' },
+//   { name: 'backend_services', icon: 'https://img.icons8.com/color/96/folder-invoices.png', cat: 'folder', url: '#', color: 'rgba(34, 211, 238, 0.1)' },
+//   { name: 'database_schemas', icon: 'https://img.icons8.com/color/96/folder-invoices.png', cat: 'folder', url: '#', color: 'rgba(34, 211, 238, 0.1)' },
+//   { name: 'system_langs', icon: 'https://img.icons8.com/color/96/folder-invoices.png', cat: 'folder', url: '#', color: 'rgba(34, 211, 238, 0.1)' },
+//   { name: 'devops_tools', icon: 'https://img.icons8.com/color/96/folder-invoices.png', cat: 'folder', url: '#', color: 'rgba(34, 211, 238, 0.1)' },
 
   // Frontend
   { name: 'HTML5', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg', cat: 'frontend', url: 'https://developer.mozilla.org/en-US/docs/Web/HTML', color: 'rgba(227, 76, 38, 0.15)' },
