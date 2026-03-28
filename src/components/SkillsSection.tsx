@@ -3,13 +3,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Layout, Settings, Terminal, Database, Search, Folder, ExternalLink, Cpu } from 'lucide-react';
 
 const rawSkills = [
-//   // Categories (Folders to appear in the circle)
-//   { name: 'frontend_ui', icon: 'https://img.icons8.com/color/96/folder-invoices.png', cat: 'folder', url: '#', color: 'rgba(34, 211, 238, 0.1)' },
-//   { name: 'backend_services', icon: 'https://img.icons8.com/color/96/folder-invoices.png', cat: 'folder', url: '#', color: 'rgba(34, 211, 238, 0.1)' },
-//   { name: 'database_schemas', icon: 'https://img.icons8.com/color/96/folder-invoices.png', cat: 'folder', url: '#', color: 'rgba(34, 211, 238, 0.1)' },
-//   { name: 'system_langs', icon: 'https://img.icons8.com/color/96/folder-invoices.png', cat: 'folder', url: '#', color: 'rgba(34, 211, 238, 0.1)' },
-//   { name: 'devops_tools', icon: 'https://img.icons8.com/color/96/folder-invoices.png', cat: 'folder', url: '#', color: 'rgba(34, 211, 238, 0.1)' },
-
   // Frontend
   { name: 'HTML5', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg', cat: 'frontend', url: 'https://developer.mozilla.org/en-US/docs/Web/HTML', color: 'rgba(227, 76, 38, 0.15)' },
   { name: 'CSS3', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg', cat: 'frontend', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS', color: 'rgba(38, 77, 228, 0.15)' },
@@ -39,7 +32,6 @@ const rawSkills = [
   { name: 'Java', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg', cat: 'languages', url: 'https://docs.oracle.com/en/java/', color: 'rgba(0, 115, 150, 0.15)' },
 ];
 
-// Sort alphabetically, but keep folders at the top if you prefer, or pure alpha
 const skills = [...rawSkills].sort((a, b) => a.name.localeCompare(b.name));
 
 const CATEGORIES = [
@@ -82,9 +74,7 @@ export default function SkillsSection() {
     return () => { if (document.body.contains(script)) document.body.removeChild(script); };
   }, []);
 
-  // Filter out folders from the actual grid display to keep it clean
   const filteredSkills = skills.filter(s => 
-    s.cat !== 'folder' && 
     (activeTab === 'all' || s.cat === activeTab) &&
     s.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -96,10 +86,22 @@ export default function SkillsSection() {
         <h2 className="text-3xl font-mono font-bold text-os-cyan flex items-center gap-4 uppercase">
           <Terminal className="w-10 h-10" /> systemctl status technical-skills
         </h2>
+        <div className="h-1 w-24 bg-os-cyan mt-2 opacity-50" />
       </div>
 
       {/* 1. THE SKILLS UNIVERSE */}
-      <div className="relative w-full max-w-[500px] aspect-square flex items-center justify-center mb-16 self-center">
+      <div className="relative w-full max-w-[500px] aspect-square flex items-center justify-center mb-16 self-center group">
+        
+        {/* CENTERED IDENTITY AVATAR */}
+        <div className="absolute z-40 w-28 h-28 rounded-full border-2 border-os-cyan/50 p-1 bg-black/50 backdrop-blur-md overflow-hidden transition-all duration-500 group-hover:scale-110 shadow-[0_0_20px_rgba(34,211,238,0.3)]">
+          <img 
+            src="/avatar.png" 
+            alt="Ansh Avatar"
+            className="w-full h-full object-cover rounded-full hover:grayscale-0 transition-all duration-300"
+          />
+        </div>
+
+        {/* BACKGROUND DECORATION */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
           <svg viewBox="0 0 100 100" className="w-[115%] h-[115%] opacity-40 animate-[spin_60s_linear_infinite]">
             <circle cx="50" cy="50" r="48" fill="none" stroke="#22d3ee" strokeWidth="0.2" />
@@ -107,9 +109,9 @@ export default function SkillsSection() {
           </svg>
         </div>
         
+        {/* THE CANVAS */}
         <canvas id="skills-canvas" width="800" height="800" className="w-full h-full cursor-grab z-10 relative">
           <ul id="skills-list" className="hidden">
-            {/* The Circle contains EVERYTHING (Skills + Folders) */}
             {skills.map((skill) => (
               <li key={skill.name}>
                 <a href={skill.url} target="_blank" rel="noopener noreferrer">
@@ -194,7 +196,7 @@ export default function SkillsSection() {
                     <p className="text-[11px] font-mono text-zinc-400 group-hover:text-white uppercase font-bold tracking-tighter">
                       {skill.name}.sh
                     </p>
-                    <p className="text-[9px] font-mono text-zinc-600 opacity-0 group-hover:opacity-100 transition-opacity">View Documentation</p>
+                    <p className="text-[9px] font-mono text-zinc-600 opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-widest">Read documentation</p>
                   </div>
                 </motion.a>
               ))}

@@ -64,13 +64,13 @@ export default function AboutSection() {
               <div className="group">
                 <div className="text-os-cyan text-xs mb-3 transition-transform group-hover:translate-x-1">→ whoami</div>
                 <p className="text-os-text-muted text-[13px] leading-relaxed pl-5 border-l border-white/5">
-                  Passionate B.Tech Computer Science student with expertise in modern web technologies. I specialize in creating robust, scalable applications.
+                  I am a Full-Stack Developer and B.Tech Computer Science student specializing in building scalable, user-centric web applications. My core expertise lies in the MERN stack, with a heavy focus on bridging the gap between robust backend architecture and intuitive frontend design.
                 </p>
               </div>
               <div className="group">
                 <div className="text-os-cyan text-xs mb-3 transition-transform group-hover:translate-x-1">→ cat mission.txt</div>
                 <p className="text-os-text-muted text-[13px] leading-relaxed pl-5 border-l border-white/5">
-                  Translating complex business requirements into robust technical solutions. Currently focused on <span className="text-white">Full-Stack Development</span> and <span className="text-white">UI/UX</span>.
+                  To engineer high-performance, scalable web ecosystems that bridge the gap between human intuition and technical complexity. By leveraging the <span className="text-white">Real-Time systems</span> , <span className="text-white">MERN stack</span> and <span className="text-white">AI integration</span>.I am dedicated to building digital solutions that are as secure as they are seamless.
                 </p>
               </div>
             </div>
