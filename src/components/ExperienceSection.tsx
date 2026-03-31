@@ -64,8 +64,7 @@ const commits = [
 
 export default function ExperienceSection() {
   return (
-    <section id="experience" className="py-24 px-4 md:px-8 lg:px-16 relative">
-      {/* Header with simple fade-in */}
+    <section id="experience" className="py-24 px-4 md:px-8 lg:px-16 relative overflow-hidden">
       <motion.div 
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -79,14 +78,12 @@ export default function ExperienceSection() {
       </motion.div>
 
       <div className="max-w-5xl mx-auto relative">
-        {/* Timeline Track */}
         <div className="absolute left-4 md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-[1px] bg-white/5 z-0" />
 
         <div className="space-y-16">
           {commits.map((commit, index) => (
             <div key={commit.hash} className={`relative flex flex-col md:flex-row gap-8 ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
               
-              {/* Central Date Node - Animates scale */}
               <motion.div 
                 initial={{ scale: 0, opacity: 0 }}
                 whileInView={{ scale: 1, opacity: 1 }}
@@ -100,7 +97,6 @@ export default function ExperienceSection() {
                 </span>
               </motion.div>
 
-              {/* Commit Card - Animates slide-in from sides */}
               <motion.div 
                 initial={{ 
                   opacity: 0, 
@@ -116,19 +112,21 @@ export default function ExperienceSection() {
                 transition={{ duration: 0.6, ease: "easeOut" }}
                 className="flex-1 ml-12 md:ml-0"
               >
-                <div className="os-glass-card p-8 group hover:border-white/10 transition-all duration-500 hover:shadow-[0_0_50px_rgba(255,255,255,0.03)]">
-                  <div className="flex items-center gap-3 mb-6 font-mono text-xs">
+                <div className="os-glass-card p-6 md:p-8 group hover:border-white/10 transition-all duration-500 hover:shadow-[0_0_50px_rgba(255,255,255,0.03)] h-full flex flex-col">
+                  <div className="flex items-center gap-3 mb-6 font-mono text-[10px] sm:text-xs">
                     <span className="text-os-amber font-bold tracking-widest">{commit.hash}</span>
                     <span className="text-os-cyan font-bold tracking-widest uppercase">{commit.tag}</span>
                   </div>
 
                   <div className="flex items-center gap-4 mb-6">
-                    <div className="p-3 bg-white/5 rounded-xl border border-white/10">
+                    <div className="p-3 bg-white/5 rounded-xl border border-white/10 flex-shrink-0">
                       {commit.icon}
                     </div>
-                    <div>
-                      <h3 className="text-xl font-black text-white uppercase tracking-tight">{commit.title}</h3>
-                      <p className="text-os-text-muted text-[10px] font-mono uppercase mt-0.5 tracking-wider">{commit.organization} • {commit.duration}</p>
+                    <div className="min-w-0">
+                      <h3 className="text-lg md:text-xl font-black text-white uppercase tracking-tight truncate">{commit.title}</h3>
+                      <p className="text-os-text-muted text-[9px] sm:text-[10px] font-mono uppercase mt-0.5 tracking-wider truncate">
+                        {commit.organization} • {commit.duration}
+                      </p>
                     </div>
                   </div>
 
@@ -138,14 +136,14 @@ export default function ExperienceSection() {
 
                   <div className="flex flex-wrap gap-2 mb-8">
                     {commit.skills.map((skill) => (
-                      <span key={skill} className="px-3 py-1 bg-white/5 border border-white/10 rounded-sm text-[9px] text-os-text-muted font-mono uppercase tracking-widest">
+                      <span key={skill} className="px-2 py-1 bg-white/5 border border-white/10 rounded-sm text-[8px] sm:text-[9px] text-os-text-muted font-mono uppercase tracking-widest">
                         {skill}
                       </span>
                     ))}
                   </div>
 
-                  {/* Footer Stats */}
-                  <div className="flex items-center justify-between gap-4 pt-6 border-t border-white/5 mt-auto">
+                  {/* FIXED RESPONSIVE FOOTER */}
+                  <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-3 pt-6 border-t border-white/5 mt-auto">
                     <a 
                       href={commit.link}
                       target="_blank"
@@ -156,10 +154,12 @@ export default function ExperienceSection() {
                       Verify.sh
                     </a>
                     
-                    <div className="text-[10px] font-mono tracking-wider flex gap-1.5 select-none">
-                      <span className="text-zinc-500">{commit.filesChanged || '1 file changed'}</span>
-                      <span className="text-emerald-400">{commit.insertions || '10 insertions(+)'}</span>
-                      <span className="text-red-400">{commit.deletions || '0 deletions(-)'}</span>
+                    <div className="text-[9px] sm:text-[10px] font-mono tracking-wider flex flex-wrap gap-x-2 gap-y-1 select-none items-center">
+                      <span className="text-zinc-500 whitespace-nowrap">{commit.filesChanged || '1 file changed'}</span>
+                      <div className="flex gap-2">
+                        <span className="text-emerald-400 whitespace-nowrap">{commit.insertions || '10 insertions(+)'}</span>
+                        <span className="text-red-400 whitespace-nowrap">{commit.deletions || '0 deletions(-)'}</span>
+                      </div>
                     </div>
                   </div>
                 </div>
